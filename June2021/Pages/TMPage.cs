@@ -1,4 +1,5 @@
 ﻿using June2021.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -42,14 +43,18 @@ namespace June2021.Pages
             // check if the created record is present in the table and has expected values
             IWebElement actualCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
+            // option - 2
             if (actualCode.Text == "June2021")
             {
-                Console.WriteLine("Time record created successfully, test passed");
+                Assert.Pass("Time record created successfully, test passed");
             }
             else
             {
-                Console.WriteLine("Test Failed");
+                Assert.Fail("Test Failed");
             }
+
+            // option - 1
+            Assert.That(actualCode.Text == "June2021", "actual code and the expected code did not match.");
         }
 
         // test - edit TM
